@@ -58,7 +58,6 @@ paths:
           description: Account not found
         '405':
           description: Validation exception
-  /createaccount:  
     post:
       tags:
         - Account
@@ -94,26 +93,21 @@ paths:
           description: Account with same id found
         '405':
           description: Validation exception
-  /accounts/{userId}:
+  /{userId}:
     get:
       tags:
         - Account
       summary: Get an account
       description: Get an account
       operationId: getAccount
-      requestBody:
-        description: Get an account
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/getAccount'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/getAccount'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/getAccount'
-        required: true
+      parameters: 
+        - name: userId
+          in: path
+          description: ID for user account to return
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         '200':
           description: Successful operation
@@ -130,13 +124,20 @@ paths:
           description: Account with same id found
         '405':
           description: Validation exception
-  /accounts/{userId}/{name}:
     delete:
       tags:
         - Account
       summary: Delete an account
       description: Delete an account
       operationId: deleteAccount
+      parameters: 
+        - name: userId
+          in: path
+          description: ID for user account to return
+          required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         '200':
           description: Successful operation
