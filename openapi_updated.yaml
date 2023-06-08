@@ -78,15 +78,12 @@ paths:
               $ref: '#/components/schemas/createAccount'
         required: true
       responses:
-        '200':
-          description: Successful operation
+        '201':
+          description: Account created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createAccount'          
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/createAccount'
+                $ref: '#/components/schemas/putAccount'          
         '400':
           description: Invalid details supplied
         '404':
@@ -183,6 +180,14 @@ components:
           example: url
       xml:
         name: updateAccount
+    putAccount:
+      required:
+        - userId
+      type: object
+      properties:
+        userId:
+          type: integer
+          example: 123
     createAccount:
       required:
         - username
